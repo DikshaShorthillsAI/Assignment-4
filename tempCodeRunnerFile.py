@@ -1,1 +1,0 @@
-home/shtlp_0010/Desktop/Assignment Demo/Assignment_3_Python/sample_requirements_with_table_image.pdf

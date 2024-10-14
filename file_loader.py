@@ -1,4 +1,3 @@
-# file_loader.py
 from abc import ABC, abstractmethod
 
 class FileLoader(ABC):
