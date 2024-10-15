@@ -100,6 +100,7 @@ class DataExtractor:
         """Extract hyperlinks from the file, including metadata."""
         links_data = []
 
+        # Extract links from PDF files
         if self.file_path.endswith('.pdf'):
             pdf_document = fitz.open(self.file_path)
             for page_num in range(len(pdf_document)):
@@ -127,6 +128,7 @@ class DataExtractor:
                         })
             pdf_document.close()
 
+        # Extract links from DOCX files
         elif self.file_path.endswith('.docx'):
             doc = self.loader.load_file()
             for rel in doc.part.rels.values():
@@ -140,9 +142,24 @@ class DataExtractor:
                         }
                     })
 
+        # Extract links from PPTX files
         elif self.file_path.endswith('.pptx'):
-            # URLs are rare in PPTX, so skipping this part
-            pass
+            ppt = self.loader.load_file()
+            for slide_num, slide in enumerate(ppt.slides):
+                for shape in slide.shapes:
+                    # Check if the shape has a hyperlink
+                    if hasattr(shape, "hyperlink") and shape.hyperlink.address:
+                        link_url = shape.hyperlink.address
+                        link_text = getattr(shape, 'text', 'Hyperlinked shape')  # Text or a generic description
+                        links_data.append({
+                            "text": link_text,
+                            "url": link_url,
+                            "metadata": {
+                                "source": self.file_path,
+                                "slide_number": slide_num + 1,
+                                "description": f"Link from Slide {slide_num + 1}"
+                            }
+                        })
 
         return links_data
 
