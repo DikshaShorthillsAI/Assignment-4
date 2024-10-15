@@ -1,25 +1,25 @@
 import unittest
 import os
 import shutil
-from data_extractor import DataExtractor
-from concrete_loaders import DOCXLoader, PDFLoader, PPTLoader
-from concrete_storage import FileStorage, SQLStorage  # type: ignore # Ensure correct import paths
+from Extractor.data_extractor import DataExtractor
+from loaders.concrete_loaders import DOCXLoader, PDFLoader, PPTLoader
+from Storage.concrete_storage import FileStorage, SQLStorage  # type: ignore # Ensure correct import paths
  
 class TestFileLoader(unittest.TestCase):
  
     def test_pdf_file_format(self):
-        loader = PDFLoader('somatosensory.pdf')
+        loader = PDFLoader('/home/shtlp_0010/Desktop/Assignment_File_Extraction/Samples/somatosensory.pdf')
         self.assertTrue(loader.validate_file())  # Check if the file is valid
  
     def test_docx_file_format(self):
         loader = DOCXLoader('file-sample_100kB.docx')
         self.assertTrue(loader.validate_file())
     def test_ppt_file_format(self):
-        loader = PPTLoader('sample1.pptx')
+        loader = PPTLoader('/home/shtlp_0010/Desktop/Assignment_File_Extraction/Samples/sample1.pptx')
         self.assertTrue(loader.validate_file())
  
     def test_file_size(self):
-        loader = PDFLoader('somatosensory.pdf')
+        loader = PDFLoader('/home/shtlp_0010/Desktop/Assignment_File_Extraction/Samples/somatosensory.pdf')
         self.assertTrue(loader.is_size_within_limit())  # Implement this method in the loader
  
     def test_empty_file(self):
@@ -65,28 +65,28 @@ class TestFileLoader(unittest.TestCase):
 class TestPDFExtraction(unittest.TestCase):
  
     def test_pdf_text_extraction(self):
-        loader = PDFLoader('somatosensory.pdf')
+        loader = PDFLoader('/home/shtlp_0010/Desktop/Assignment_File_Extraction/Samples/somatosensory.pdf')
         extractor = DataExtractor(loader)
         text_data = extractor.extract_text()
         self.assertIsInstance(text_data, list)
         self.assertGreater(len(text_data), 0)
  
     def test_pdf_image_extraction(self):
-        loader = PDFLoader('somatosensory.pdf')
+        loader = PDFLoader('/home/shtlp_0010/Desktop/Assignment_File_Extraction/Samples/somatosensory.pdf')
         extractor = DataExtractor(loader)
         images_data = extractor.extract_images()
         self.assertIsInstance(images_data, list)
         self.assertGreater(len(images_data), 0)
  
     def test_pdf_link_extraction(self):
-        loader = PDFLoader('somatosensory.pdf')
+        loader = PDFLoader('/home/shtlp_0010/Desktop/Assignment_File_Extraction/Samples/somatosensory.pdf')
         extractor = DataExtractor(loader)
         links_data = extractor.extract_links()
         self.assertIsInstance(links_data, list)
         self.assertGreater(len(links_data), 0)
  
     def test_pdf_table_extraction(self):
-        loader = PDFLoader('somatosensory.pdf')
+        loader = PDFLoader('/home/shtlp_0010/Desktop/Assignment_File_Extraction/Samples/somatosensory.pdf')
         extractor = DataExtractor(loader)
         tables_data = extractor.extract_tables()
         self.assertIsInstance(tables_data, list)
@@ -119,14 +119,14 @@ class TestPDFExtraction(unittest.TestCase):
 class TestDOCXExtraction(unittest.TestCase):
  
     def test_docx_text_extraction(self):
-        loader = DOCXLoader('file-sample_100kB.docx')
+        loader = DOCXLoader('/home/shtlp_0010/Desktop/Assignment_File_Extraction/Samples/file-sample_100kB.docx')
         extractor = DataExtractor(loader)
         text_data = extractor.extract_text()
         self.assertIsInstance(text_data, list)
         self.assertGreater(len(text_data), 0)
  
     def test_docx_image_extraction(self):
-        loader = DOCXLoader('file-sample_100kB.docx')
+        loader = DOCXLoader('/home/shtlp_0010/Desktop/Assignment_File_Extraction/Samples/file-sample_100kB.docx')
         extractor = DataExtractor(loader)
         images_data = extractor.extract_images()
         self.assertIsInstance(images_data, list)
@@ -141,7 +141,7 @@ class TestDOCXExtraction(unittest.TestCase):
        self.assertGreater(len(links_data), 0)
  
     def test_docx_table_extraction(self):
-        loader = DOCXLoader('file-sample_100kB.docx')
+        loader = DOCXLoader('/home/shtlp_0010/Desktop/Assignment_File_Extraction/Samples/file-sample_100kB.docx')
         extractor = DataExtractor(loader)
         tables_data = extractor.extract_tables()
         self.assertIsInstance(tables_data, list)
@@ -174,28 +174,28 @@ class TestDOCXExtraction(unittest.TestCase):
 class TestPPTExtraction(unittest.TestCase):
  
     def test_ppt_text_extraction(self):
-        loader = PPTLoader('sample1.pptx')
+        loader = PPTLoader('/home/shtlp_0010/Desktop/Assignment_File_Extraction/Samples/sample1.pptx')
         extractor = DataExtractor(loader)
         text_data = extractor.extract_text()
         self.assertIsInstance(text_data, list)
         self.assertGreater(len(text_data), 0)
  
     def test_ppt_image_extraction(self):
-        loader = PPTLoader('sample1.pptx')
+        loader = PPTLoader('/home/shtlp_0010/Desktop/Assignment_File_Extraction/Samples/sample1.pptx')
         extractor = DataExtractor(loader)
         images_data = extractor.extract_images()
         self.assertIsInstance(images_data, list)
         self.assertGreater(len(images_data), 0)
  
     def test_ppt_link_extraction(self):
-        loader = PPTLoader('sample1.pptx')
+        loader = PPTLoader('/home/shtlp_0010/Desktop/Assignment_File_Extraction/Samples/sample1.pptx')
         extractor = DataExtractor(loader)
         links_data = extractor.extract_links()
         self.assertIsInstance(links_data, list)
         self.assertGreater(len(links_data), 0)
  
     def test_ppt_table_extraction(self):
-        loader = PPTLoader('sample1.pptx')
+        loader = PPTLoader('/home/shtlp_0010/Desktop/Assignment_File_Extraction/Samples/sample1.pptx')
         extractor = DataExtractor(loader)
         tables_data = extractor.extract_tables()
         self.assertIsInstance(tables_data, list)

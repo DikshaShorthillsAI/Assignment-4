@@ -1,6 +1,6 @@
-from concrete_loaders import PDFLoader, DOCXLoader, PPTLoader  # Make sure to use PPTLoader
-from data_extractor import DataExtractor
-from concrete_storage import FileStorage, SQLStorage # type: ignore
+from loaders.concrete_loaders import PDFLoader, DOCXLoader, PPTLoader  # Make sure to use PPTLoader
+from Extractor.data_extractor import DataExtractor
+from Storage.concrete_storage import FileStorage, SQLStorage # type: ignore
 import os
  
 # Create output directory if it doesn't exist
@@ -9,7 +9,7 @@ if not os.path.exists(output_directory):
     os.makedirs(output_directory)
  
 # Specify the file path
-file_path = '/home/shtlp_0010/Desktop/Assignment_File_Extraction/somatosensory.pdf'  # Change this to your target file
+file_path = '/home/shtlp_0010/Desktop/Assignment_File_Extraction/Samples/somatosensory.pdf'  # Change this to your target file
  
 # Determine the file type and load the appropriate loader
 if file_path.endswith('.pdf'):

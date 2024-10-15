@@ -1,7 +1,7 @@
 import pdfplumber
 import docx
 from pptx import Presentation
-from file_loader import FileLoader
+from loaders.file_loader import FileLoader
 
 
 class PDFLoader(FileLoader):
