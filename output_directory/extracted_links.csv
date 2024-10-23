@@ -1,0 +1,4 @@
+text,url,metadata
+http://en.wikibooks.org/,http://en.wikibooks.org/,{'source': '//home/shtlp_0010/Desktop/Assignment_File_Extraction/Samples/somatosensory.pdf', 'description': 'Link from page 1', 'page_number': 1, 'position': (491.6437072753906, 214.0780029296875, 538.3936767578125, 227.27801513671875)}
+http://en.wikibooks.org/wiki/Sensory_Systems,http://en.wikibooks.org/wiki/Sensory_Systems,{'source': '//home/shtlp_0010/Desktop/Assignment_File_Extraction/Samples/somatosensory.pdf', 'description': 'Link from page 1', 'page_number': 1, 'position': (399.0126953125, 227.27801513671875, 479.7087097167969, 240.47799682617188)}
+http://css4.pub,http://css4.pub,{'source': '//home/shtlp_0010/Desktop/Assignment_File_Extraction/Samples/somatosensory.pdf', 'description': 'Link from page 4', 'page_number': 4, 'position': (154.23240661621094, 459.6796875, 195.96640014648438, 472.87969970703125)}
